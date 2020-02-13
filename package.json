@@ -15,11 +15,13 @@
     "npm": "^6.13.7",
     "react": "16.9.0",
     "react-native": "0.61.5",
+    "react-native-action-button": "^2.8.5",
     "react-native-gesture-handler": "^1.5.6",
     "react-native-live-stream": "^1.0.1",
     "react-native-nodemediaclient": "^0.1.5",
     "react-native-safe-area-context": "^0.7.2",
     "react-native-screens": "^2.0.0-beta.2",
+    "react-native-vector-icons": "^6.6.0",
     "react-native-video": "^5.0.2",
     "react-navigation": "^4.1.1",
     "react-navigation-stack": "^2.1.1"

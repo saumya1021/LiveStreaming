@@ -23,7 +23,7 @@ const AppNavigator = createStackNavigator(
     }
   },
   {
-    initialRouteName: 'PlayVideo',
+    initialRouteName: 'Splash',
     swipeEnabled: false,
     headerMode: 'none',
   },

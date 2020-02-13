@@ -1,18 +1,11 @@
-import React, {
-  Component
-} from 'react';
+import React, {Component} from 'react';
 
-import {
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
 
 import Video from 'react-native-video';
 import {styles} from './style';
 
 export default class PlayVideo extends Component {
-
   state = {
     rate: 1,
     volume: 1,
@@ -25,40 +18,49 @@ export default class PlayVideo extends Component {
 
   video: Video;
 
-  onLoad = (data) => {
-    this.setState({ duration: data.duration });
+  onLoad = data => {
+    this.setState({duration: data.duration});
   };
 
-  onProgress = (data) => {
-    this.setState({ currentTime: data.currentTime });
+  onProgress = data => {
+    this.setState({currentTime: data.currentTime});
   };
 
   onEnd = () => {
-    this.setState({ paused: true })
-    this.video.seek(0)
+    this.setState({paused: true});
+    this.video.seek(0);
   };
 
   onAudioBecomingNoisy = () => {
-    this.setState({ paused: true })
+    this.setState({paused: true});
   };
 
-  onAudioFocusChanged = (event: { hasAudioFocus: boolean }) => {
-    this.setState({ paused: !event.hasAudioFocus })
+  onAudioFocusChanged = (event: {hasAudioFocus: boolean}) => {
+    this.setState({paused: !event.hasAudioFocus});
   };
 
   getCurrentTimePercentage() {
     if (this.state.currentTime > 0) {
-      return parseFloat(this.state.currentTime) / parseFloat(this.state.duration);
+      return (
+        parseFloat(this.state.currentTime) / parseFloat(this.state.duration)
+      );
     }
     return 0;
-  };
+  }
 
   renderRateControl(rate) {
-    const isSelected = (this.state.rate === rate);
+    const isSelected = this.state.rate === rate;
 
     return (
-      <TouchableOpacity onPress={() => { this.setState({ rate }) }}>
-        <Text style={[styles.controlOption, { fontWeight: isSelected ? 'bold' : 'normal' }]}>
+      <TouchableOpacity
+        onPress={() => {
+          this.setState({rate});
+        }}>
+        <Text
+          style={[
+            styles.controlOption,
+            {fontWeight: isSelected ? 'bold' : 'normal'},
+          ]}>
           {rate}x
         </Text>
       </TouchableOpacity>
@@ -66,42 +68,60 @@ export default class PlayVideo extends Component {
   }
 
   renderResizeModeControl(resizeMode) {
-    const isSelected = (this.state.resizeMode === resizeMode);
+    const isSelected = this.state.resizeMode === resizeMode;
 
     return (
-      <TouchableOpacity onPress={() => { this.setState({ resizeMode }) }}>
-        <Text style={[styles.controlOption, { fontWeight: isSelected ? 'bold' : 'normal' }]}>
+      <TouchableOpacity
+        onPress={() => {
+          this.setState({resizeMode});
+        }}>
+        <Text
+          style={[
+            styles.controlOption,
+            {fontWeight: isSelected ? 'bold' : 'normal'},
+          ]}>
           {resizeMode}
         </Text>
       </TouchableOpacity>
-    )
+    );
   }
 
   renderVolumeControl(volume) {
-    const isSelected = (this.state.volume === volume);
+    const isSelected = this.state.volume === volume;
 
     return (
-      <TouchableOpacity onPress={() => { this.setState({ volume }) }}>
-        <Text style={[styles.controlOption, { fontWeight: isSelected ? 'bold' : 'normal' }]}>
+      <TouchableOpacity
+        onPress={() => {
+          this.setState({volume});
+        }}>
+        <Text
+          style={[
+            styles.controlOption,
+            {fontWeight: isSelected ? 'bold' : 'normal'},
+          ]}>
           {volume * 100}%
         </Text>
       </TouchableOpacity>
-    )
+    );
   }
 
   render() {
-    const flexCompleted = this.getCurrentTimePercentage() * 100;
-    const flexRemaining = (1 - this.getCurrentTimePercentage()) * 100;
+    // const flexCompleted = this.getCurrentTimePercentage() * 100;
+    // const flexRemaining = (1 - this.getCurrentTimePercentage()) * 100;
 
     return (
       <View style={styles.container}>
         <TouchableOpacity
           style={styles.fullScreen}
-          onPress={() => this.setState({ paused: !this.state.paused })}
-        >
+          onPress={() => this.setState({paused: !this.state.paused})}>
           <Video
-            ref={(ref: Video) => { this.video = ref }}
-            source={{uri: "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4"}}
+            ref={(ref: Video) => {
+              this.video = ref;
+            }}
+            source={{
+              uri:
+                'https://stream.mux.com/JkBW3HxSv6nI21Hmpo18ttjxlyT0002tmv.m3u8',
+            }}
             style={styles.fullScreen}
             rate={this.state.rate}
             paused={this.state.paused}
@@ -119,13 +139,13 @@ export default class PlayVideo extends Component {
 
         <View style={styles.controls}>
           <View style={styles.generalControls}>
-            <View style={styles.rateControl}>
+            {/* <View style={styles.rateControl}>
               {this.renderRateControl(0.25)}
               {this.renderRateControl(0.5)}
               {this.renderRateControl(1.0)}
               {this.renderRateControl(1.5)}
               {this.renderRateControl(2.0)}
-            </View>
+            </View> */}
 
             <View style={styles.volumeControl}>
               {this.renderVolumeControl(0.5)}
@@ -140,12 +160,12 @@ export default class PlayVideo extends Component {
             </View>
           </View>
 
-          <View style={styles.trackingControls}>
+          {/* <View style={styles.trackingControls}>
             <View style={styles.progress}>
               <View style={[styles.innerProgressCompleted, { flex: flexCompleted }]} />
               <View style={[styles.innerProgressRemaining, { flex: flexRemaining }]} />
             </View>
-          </View>
+          </View> */}
         </View>
       </View>
     );
