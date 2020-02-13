@@ -42,7 +42,7 @@ class LiveVideo extends React.Component {
             this.vb = vb;
           }}
           outputUrl={
-            'rtmp://live.mux.com/app/c7f43e3f-35e1-ffce-db2f-c2ea5a2a37e9'
+            'rtmp://live.mux.com/app/6643cb24-8979-1f2a-0798-c9d87fe0ad95'
           }
           camera={{cameraId: 1, cameraFrontMirror: false}}
           audio={{bitrate: 32000, profile: 1, samplerate: 44100}}

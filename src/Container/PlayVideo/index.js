@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
-import {Text, TouchableOpacity, View} from 'react-native';
-
+import {Text, TouchableOpacity, View, Image} from 'react-native';
+import {PLAY} from '../../utils/common';
 import Video from 'react-native-video';
 import {styles} from './style';
 
@@ -108,7 +108,7 @@ export default class PlayVideo extends Component {
   render() {
     // const flexCompleted = this.getCurrentTimePercentage() * 100;
     // const flexRemaining = (1 - this.getCurrentTimePercentage()) * 100;
-
+    const {paused} = this.state;
     return (
       <View style={styles.container}>
         <TouchableOpacity
@@ -120,7 +120,7 @@ export default class PlayVideo extends Component {
             }}
             source={{
               uri:
-                'https://stream.mux.com/JkBW3HxSv6nI21Hmpo18ttjxlyT0002tmv.m3u8',
+                'https://stream.mux.com/365fk7MmjqmQK8Ov6lE9zSA3100vPj6Y3.m3u8',
             }}
             style={styles.fullScreen}
             rate={this.state.rate}
@@ -135,6 +135,11 @@ export default class PlayVideo extends Component {
             onAudioFocusChanged={this.onAudioFocusChanged}
             repeat={false}
           />
+          {paused && (
+            <View style={styles.playContainer}>
+              <Image source={PLAY} style={{height: 60, width: 60}} />
+            </View>
+          )}
         </TouchableOpacity>
 
         <View style={styles.controls}>

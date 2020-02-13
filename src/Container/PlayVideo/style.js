@@ -67,4 +67,13 @@ export const styles = StyleSheet.create({
     paddingRight: 2,
     lineHeight: 12,
   },
+  playContainer : {
+    position: 'absolute',
+    height: 50,
+    width: 50,
+    alignItems: 'center',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    top: '50%',
+}
 })
